@@ -107,4 +107,47 @@ public class StudentRepo {
         students.add(student);
         saveStudentsToFile();
     }
+
+    // Method to update student
+    public boolean updateStudent(Student updatedStudent) {
+
+        
+
+     for (int i = 0; i < students.size(); i++) {
+
+        if (students.get(i).getStudentId()
+                .equals(updatedStudent.getStudentId())) {
+
+            students.set(i, updatedStudent);
+
+            saveStudentsToFile();
+
+            return true;
+        }
+     }
+
+    return false;
+} 
+
+// Method to delete student
+public boolean deleteStudent(String studentId) {
+
+    
+    Student student = getStudentById(studentId);
+
+    if (student != null) {
+
+        students.remove(student);
+
+        saveStudentsToFile();
+
+        return true;
+    }
+
+    return false;
 }
+
+}
+
+
+

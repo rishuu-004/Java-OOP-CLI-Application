@@ -134,4 +134,78 @@ public class StudentService {
             System.out.println("Student with ID " + studentId + " not found.");
         }
     }
+
+        // Method to update student
+
+   public void updateStudent() {
+     try{
+
+    System.out.println("Enter Student ID to update: ");
+    String studentId = scanner.nextLine();
+
+    Student student = studentRepo.getStudentById(studentId);
+
+    if (student == null) {
+        System.out.println("Student not found.");
+        return;
+    }
+
+    System.out.println("Enter New Name: ");
+    String name = scanner.nextLine();
+
+    System.out.println("Enter New Degree Program: ");
+    String degreeProgram = scanner.nextLine();
+
+    System.out.println("Enter Current Year: ");
+    int currentYear = scanner.nextInt();
+    scanner.nextLine();
+
+    System.out.println("Enter Current Semester: ");
+    int currentSemester = scanner.nextInt();
+    scanner.nextLine();
+
+    System.out.println("Enter New Email: ");
+    String email = scanner.nextLine();
+
+    student.setName(name);
+    student.setDegreeProgram(degreeProgram);
+    student.setCurrentYear(currentYear);
+    student.setCurrentSemester(currentSemester);
+    student.setEmail(email);
+
+    boolean updated = studentRepo.updateStudent(student);
+
+    if (updated) {
+        System.out.println("Student updated successfully.");
+    } else {
+        System.out.println("Update failed.");
+    }
+
+}catch (Exception e){
+        System.out.println("Error: " + e);
+}
+}
+
+
+   // Method to delete student
+    public void deleteStudent() {
+
+        try{
+
+    System.out.println("Enter Student ID to delete: ");
+    String studentId = scanner.nextLine();
+
+    boolean deleted = studentRepo.deleteStudent(studentId);
+
+    if (deleted) {
+        System.out.println("Student deleted successfully.");
+    } else {
+        System.out.println("Student not found.");
+    }
+
+    }catch (Exception e){
+        System.out.println("Error: " + e);
+}
+   }
+
 }
